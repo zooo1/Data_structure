@@ -10,8 +10,8 @@ def counting_sort(ary):
     # 1. counting
     for num in ary:
         counts[num] += 1
+
     # 2. counting 누적
-  
     for i in range(1, len(counts)):
         counts[i] += counts[i-1]
   
