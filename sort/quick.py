@@ -1,3 +1,8 @@
+'''
+Quick sort
+pivot을 중심으로 pivot보다 작은 값은 pivot의 왼쪽, 
+pivot보다 큰 값은 pivot의 오른쪽으로 옮겨 정렬하는 방식
+'''
 def quick_sort(ary):
 
     # ary의 길이가 1 이하라면 더 이상 정렬할 필요가 없다.
