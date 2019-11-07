@@ -47,6 +47,8 @@ print(deQueue())
 print(deQueue())
 '''
 
+
+'''
 # 연결 큐
 class Node:
     def __init__(self, data, next_node):
@@ -54,40 +56,81 @@ class Node:
         self.next = next_node
     
 
-def initialize():
-    global front, rear
-    front = Node("초기화", None)
-    rear = front
-    return rear.data, front.data
-
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
     
-def enQueue(data):
-    global rear
-    rear.next = Node(data, None)
-    rear = rear.next
-    return rear.data
+    def is_empty(self):
+        # Queue가 비어있는 경우 알려준다.
+        return self.front == None
 
+    def initialize(self):
+        self.front = self.rear = Node("first data", None)
+        return self.front
+    
+    def enQueue(self, data):
+        self.rear.next = Node(data, None)
+        self.rear = self.rear.next
+        return self.rear
+
+    def deQueue(self):
+        if self.is_empty():
+            return f"Queue is Empty!"
+        res = self.front.data
+        self.front = self.front.next
+        return res
+
+    def show(self):
+        p = self.front
+        while p!=self.rear:
+            print(p.data)
+            p = p.next
+
+
+queue = Queue()
+print(queue.initialize())
+print(queue.enQueue(1))
+print(queue.enQueue(2))
+print(queue.enQueue(3))
+print(queue.deQueue())
+print(queue.deQueue())
+print(queue.deQueue())
+print(queue.deQueue())
+print(queue.deQueue())
+'''
+
+# 원형 큐
+Queue = [0] * 4
+front, rear = 0, 0
+def is_empty():
+    global front, rear
+    return front == rear
+
+def is_full():
+    return (rear+1)%len(Queue) == front
+
+def enQueue(data):
+    global front, rear
+    if is_full():
+        return f"Queue is Full"
+    N = len(Queue)
+    rear = (rear+1) % N
+    Queue[rear] = data
+    return rear, Queue[rear]
 
 def deQueue():
-    global front
+    global front, rear
     if is_empty():
-        return f"Queue is Empty!"
-    res = front.data
-    front = front.next
-    return res
+        return f"Queue is Empty"
+    front = (front+1) % len(Queue)
+    return front, Queue[front]
 
-
-def is_empty():
-    global front
-    return front == None
-
-
-front, rear = Node(None, None), Node(None, None)
-print(initialize())
 print(enQueue(1))
 print(enQueue(2))
 print(enQueue(3))
-print(deQueue())
+print(enQueue(4))
+print(enQueue(5))
 print(deQueue())
 print(deQueue())
 print(deQueue())
