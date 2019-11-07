@@ -100,6 +100,7 @@ print(queue.deQueue())
 print(queue.deQueue())
 '''
 
+'''
 # 원형 큐
 Queue = [0] * 4
 front, rear = 0, 0
@@ -135,3 +136,60 @@ print(deQueue())
 print(deQueue())
 print(deQueue())
 print(deQueue())
+'''
+
+# 덱(Deque)
+class Node:
+    def __init__(self, data, next_node):
+        self.data = data
+        self.next = next_node
+    
+class Deque:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+
+    def is_empty(self):
+        return self.front == None
+    
+    def initialize(self):
+        self.front = self.rear = Node("first data", None)
+
+    def push_front(self, data):
+        self.front = Node(data,self.front)
+        return self.front.data
+    
+    def push_back(self, data):
+        self.rear.next = Node(data, None)
+        self.rear = self.rear.next
+        return self.rear.data
+
+    def pop_front(self):
+        if is_empty():
+            return f"Queue empty!"
+        res = self.front.data
+        self.front = self.front.next
+        return res
+
+    def pop_back(self):
+        if is_empty():
+            return f"Queue empty!"
+        res = self.rear.data
+        self.rear = self.rear.next
+        return res
+
+    def show(self):
+        p = self.front
+        while p != None:
+            print(self.front.data)
+            p = p.next
+
+deque = Deque()
+deque.initialize()
+print(deque.push_front(1))
+print(deque.push_front(2))
+print(deque.push_front(3))
+print(deque.push_back(4))
+print(deque.push_back(5))
+print(deque.push_back(6))
+
