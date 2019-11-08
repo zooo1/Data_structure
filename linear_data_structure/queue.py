@@ -156,7 +156,7 @@ class Deque:
         self.front = self.rear = Node("first data", None)
 
     def push_front(self, data):
-        self.front = Node(data,self.front)
+        self.front = Node(data, self.front)
         return self.front.data
     
     def push_back(self, data):
@@ -181,7 +181,7 @@ class Deque:
     def show(self):
         p = self.front
         while p != None:
-            print(self.front.data)
+            print(p.data)
             p = p.next
 
 deque = Deque()
@@ -192,4 +192,4 @@ print(deque.push_front(3))
 print(deque.push_back(4))
 print(deque.push_back(5))
 print(deque.push_back(6))
-
+deque.show()
